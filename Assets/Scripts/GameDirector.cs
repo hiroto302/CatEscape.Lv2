@@ -63,7 +63,7 @@ public class GameDirector : MonoBehaviour
 
 
         if(this.hp < 0)  //hpが0になるとgameOver
-        // hp == 0では駄目だよ
+        // hp == 0では駄目
         //処理は上から下に実行されていくので上記のコードとの順番に注意.UIで表示させたいことと、hpに実際に代入されている数値はなんなのか常に気にかけること
         {
             SceneManager.LoadScene("GameOverScene");
@@ -72,7 +72,7 @@ public class GameDirector : MonoBehaviour
 
     void Update()
     {
-        // タイマーを設定し、
+        // タイマーを設定
         this.time.GetComponent<Text>().text = this.timeLimit.ToString("F1");
         this.delta += Time.deltaTime;  //フレーム毎の時間差を代入
         this.startTime -= Time.deltaTime;
@@ -116,23 +116,27 @@ public class GameDirector : MonoBehaviour
                     this.delta = 0;  //ここでdeltaを0に初期化し忘れないこと。deltaの数値が大きくなりif文が常にフレームごとにtrueを返し、すごい勢いで処理を重ねてしまい正しく時間経過を測ることができないため
                     this.timeLimit -= this.span;
 
-                    if(26 <= this.timeLimit && this.timeLimit <31)
+                    if(27 <= this.timeLimit && this.timeLimit <31)
                     {
                         this.generator.GetComponent<ArrowGenerator>().SetParameter(0.8f, -0.1f);
                     }
-                    else if(20 <= this.timeLimit && this.timeLimit < 26)
+                    else if(22 <= this.timeLimit && this.timeLimit < 27)
                     {
                         this.generator.GetComponent<ArrowGenerator>().SetParameter(0.55f, -0.15f);
                     }
-                    else if(13 <= this.timeLimit && this.timeLimit < 20)
+                    else if(15 <= this.timeLimit && this.timeLimit < 22)
                     {
                         this.generator.GetComponent<ArrowGenerator>().SetParameter(0.35f, -0.2f);
                     }
-                    else if(4 <= this.timeLimit && this.timeLimit < 13)
+                    else if(10 <= this.timeLimit && this.timeLimit < 15)
                     {
-                        this.generator.GetComponent<ArrowGenerator>().SetParameter(0.25f, -0.15f);
+                        this.generator.GetComponent<ArrowGenerator>().SetParameter(0.25f, -0.16f);
                     }
-                    else if(2 <= this.timeLimit && this.timeLimit < 4)
+                    else if(3 <= this.timeLimit && this.timeLimit < 10)
+                    {
+                        this.generator.GetComponent<ArrowGenerator>().SetParameter(0.2f, -0.14f);
+                    }
+                    else if(2 <= this.timeLimit && this.timeLimit < 3)
                     {
                         this.generator.GetComponent<ArrowGenerator>().SetParameter(0.33f, -0.125f);
                     }
@@ -144,18 +148,5 @@ public class GameDirector : MonoBehaviour
             break;
             }
         }
-
-        // 下記の記述ではClearSceneに遷移しない、なぜかわからない。
-        // this.time.GetComponent<Text>().text = this.timeLimit.ToString("F1");
-        // this.delta += Time.deltaTime;  //フレーム毎の時間差を代入
-        // if(this.timeLimit == 28.0f)
-        // {
-        //     SceneManager.LoadScene("GameClearScene");
-        // }
-        // else if(this.delta> this.span)
-        // {
-        //     this.delta = 0;  //ここでdeltaを0に初期化し忘れないこと。deltaの数値が大きくなりif文が常にフレームごとにtrueを返し、すごい勢いで処理を重ねてしまい正しく時間経過を測ることができないため
-        //     this.timeLimit -= this.span;
-        // }
     }
 }
