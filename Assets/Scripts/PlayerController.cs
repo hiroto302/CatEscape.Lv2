@@ -14,21 +14,22 @@ public class PlayerController : MonoBehaviour
     }
 
     // キー操作に対応
-    // void Update()
-    // {
-    //     if(Input.GetKeyDown(KeyCode.LeftArrow))
-    //     {
-    //         transform.Translate(-3, 0, 0);
-    //     }
-    //     if(Input.GetKeyDown(KeyCode.RightArrow))
-    //     {
-    //         transform.Translate(3, 0, 0);
-    //     }
-    // }
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            LButtonDown();
+        }
+        if(Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            RButtonDown();
+        }
+    }
 
     //ボタン操作に対応
     public void RButtonDown()
     {
+        //行動範囲の実装
         Vector3 localPos = transform.localPosition;
         float x = localPos.x;
         if(x == 6)
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
         this.audio.PlayOneShot(this.CatEscapeSE);  //移動操作の効果音
 
+        //playerのアニメーション実装
         if( this.key == 1)
         {
             this.key = -1;
